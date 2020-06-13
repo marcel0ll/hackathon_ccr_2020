@@ -16,9 +16,17 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "node-telegram-bot-api": "^0.50.0"
+    "husky": "^4.2.5",
+    "node-telegram-bot-api": "^0.50.0",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
