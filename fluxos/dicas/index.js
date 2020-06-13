@@ -3,7 +3,7 @@ const { sleep } = require("../../util");
 const key = "O chapa responde!";
 
 const init = (bot) => {
-  bot.onText(new Regex(`${key}`, "i"), main(bot));
+  bot.onText(new RegExp(`${key}`, "i"), main(bot));
 };
 
 const main = (bot) => async (msg, match) => {

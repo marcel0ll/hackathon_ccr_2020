@@ -19,28 +19,44 @@ const bot = new TelegramBot(token, { polling: true });
 
 const { users } = require("./storage");
 
-// definir todos os botões principais e deixar para cada fluxo o registro de seus hooks
-bot.onText(/\/start/i, (msg, match) => {
+// fluxos
+banheiro.init(bot);
+alimentacao.init(bot);
+combustivel.init(bot);
+descanso.init(bot);
+dicas.init(bot);
+
+const initFlow = async (msg, match) => {
+  if (!(await users.has({ chatId: msg.chat.id }))) {
+    bot.sendMessage(
+      msg.chat.id,
+      `Fala meu chapa ${msg.from.first_name}! Para começarmos vou precisar de seu número.`,
+      {
+        reply_markup: {
+          one_time_keyboard: true,
+          keyboard: [[{ text: "Enviar número?", request_contact: true }]],
+        },
+      }
+    );
+  }
+
   bot.sendMessage(
     msg.chat.id,
-    `Fala meu chapa ${msg.from.first_name}! Para começarmos vou precisar de seu número.`,
+    `O que você quer saber ${msg.chat.first_name}?`,
     {
       reply_markup: {
         one_time_keyboard: true,
-        keyboard: [[{ text: "Enviar número?", request_contact: true }]],
+        keyboard: [
+          [banheiro.key, alimentacao.key],
+          [combustivel.key, descanso.key],
+          [dicas.key],
+        ],
       },
     }
   );
-});
+};
 
-// fluxos
-banheiro = require("./fluxos/banheiro");
-alimentacao = require("./fluxos/alimentacao");
-combustivel = require("./fluxos/combustivel");
-descanso = require("./fluxos/descanso");
-dicas = require("./fluxos/dicas");
-
-bot.on("message", async (msg) => {
+const onMessage = async (msg) => {
   debug(`${msg.from.first_name}`, msg);
 
   // if user does not exist, register
@@ -72,4 +88,8 @@ bot.on("message", async (msg) => {
       },
     });
   }
-});
+};
+
+bot.on("message", onMessage);
+bot.onText(/\/start/i, initFlow);
+bot.onText(/oi/i, initFlow);
