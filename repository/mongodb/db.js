@@ -19,6 +19,8 @@ class MongoDbClient {
       .then((client) => {
         this.client = client;
         this.db = client.db(this.dbName);
+
+        return this.db;
       })
       .catch((err) => {
         throw err;
@@ -32,7 +34,7 @@ class MongoDbClient {
   }
 
   async collection(name) {
-    let db = await this.connect().catch((err) => console.log(err));
+    let db = await this.connect();
     return db.collection(name);
   }
 }

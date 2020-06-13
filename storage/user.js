@@ -7,6 +7,10 @@ class User {
     this.firstName = firstName;
     this.chatId = chatId;
   }
+
+  get id() {
+    return { chatId: this.chatId };
+  }
 }
 
 module.exports = User;
