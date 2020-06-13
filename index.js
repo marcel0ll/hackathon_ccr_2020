@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { isDev } = require("./util");
+const { isDebugging } = require("./util");
 
 const { TELEGRAM_BOT_API } = process.env;
 
@@ -33,7 +33,7 @@ bot.onText(/\/start/i, (msg, match) => {
 fluxoConversar.init(bot);
 
 bot.on("message", async (msg) => {
-  if (isDev) {
+  if (isDebugging) {
     console.log(`${msg.from.first_name}`, msg);
   }
 
