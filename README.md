@@ -14,7 +14,8 @@ projeto meu chapa
 
 1. criar arquivo local .env a partir de .env.example
 2. preencher .env com variáveis
-3. roda `npm run dev`
+3. roda `docker-compose up`
+4. rode `./mongo.sh`
 
 ps: usar chrome://inspect -> "open dedicated DevTools for node" para que possa monitorar o console local
 
