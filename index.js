@@ -1,9 +1,20 @@
 require("dotenv").config();
 
+const { TELEGRAM_BOT_API, NODE_ENV } = process.env;
+
+const isProd = NODE_ENV === "production";
+const isDev = !isProd;
+
+const config = {
+  isDev,
+  isProd,
+  TELEGRAM_BOT_API,
+};
+
 const TelegramBot = require("node-telegram-bot-api");
 const fluxoConversar = require("./fluxos/conversar");
 
-const token = process.env.TELEGRAM_BOT_API;
+const token = TELEGRAM_BOT_API;
 
 // TODO: polling é ótimo para prototipo e testes, mas produção precisaria ser um webhook
 const bot = new TelegramBot(token, { polling: true });
@@ -24,10 +35,12 @@ bot.onText(/\/start/i, (msg, match) => {
 });
 
 // fluxos
-fluxoConversar.init(bot);
+fluxoConversar.init(config, bot);
 
 // debugging
 
-bot.on("message", (msg) => {
-  console.log(`${msg.from.first_name}`, msg);
-});
+if (isDev) {
+  bot.on("message", (msg) => {
+    console.log(`${msg.from.first_name}`, msg);
+  });
+}

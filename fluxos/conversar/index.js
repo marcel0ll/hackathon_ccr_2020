@@ -1,6 +1,6 @@
 const { clearMarkup } = require("../../util");
 
-function init(bot) {
+function init(config, bot) {
   bot.onText(/\/conversar/i, oiCallback, clearMarkup);
 }
 
