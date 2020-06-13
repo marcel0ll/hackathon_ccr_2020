@@ -1,32 +1,15 @@
 require("dotenv").config();
 
 const TelegramBot = require("node-telegram-bot-api");
+const fluxoConversar = require("./fluxos/conversar");
 
-// replace the value below with the Telegram token you receive from @BotFather
 const token = process.env.TELEGRAM_BOT_API;
 
-// Create a bot that uses 'polling' to fetch new updates
+// TODO: polling é ótimo para prototipo e testes, mas produção precisaria ser um webhook
 const bot = new TelegramBot(token, { polling: true });
 
-bot.onText(/oi/i, (msg, match) => {
-  const chatId = msg.chat.id;
+// definir todos os botões principais e deixar para cada fluxo o registro de seus hooks
+// TODO: mandar teclado para telegram
 
-  bot.sendMessage(chatId, "Fala meu chapa " + msg.from.first_name);
-});
-
-// Matches "/echo [whatever]"
-bot.onText(/\/echo (.+)/, (msg, match) => {
-  // 'msg' is the received Message from Telegram
-  // 'match' is the result of executing the regexp above on the text content
-  // of the message
-
-  const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever"
-
-  // send back the matched "whatever" to the chat
-  bot.sendMessage(chatId, resp);
-
-  setTimeout(() => {
-    bot.sendMessage(chatId, resp);
-  }, 2000);
-});
+// fluxos
+fluxoConversar.init(bot);
