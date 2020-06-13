@@ -1,6 +1,6 @@
 class User {
   firstName;
-  phone;
+  phoneNumber;
   chatId;
 
   constructor(firstName, chatId) {
