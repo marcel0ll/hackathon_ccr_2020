@@ -1,6 +1,6 @@
 const { sleep } = require("../../util");
 
-function init(config, bot) {
+function init(bot) {
   bot.onText(/\/conversar/i, oiCallback(bot));
 }
 
