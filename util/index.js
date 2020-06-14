@@ -4,8 +4,8 @@ const isProd = NODE_ENV === "production";
 const isDev = NODE_ENV !== "production";
 const isDebugging = NODE_ENV !== "production" || DEBUG === "true";
 
-module.exports.sleep = (ms) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+module.exports.sleep = (s) => {
+  return new Promise((resolve) => setTimeout(resolve, s * 1000));
 };
 
 module.exports.debug = (...msg) => {
@@ -29,6 +29,10 @@ module.exports.requestLocation = (bot, msg) => {
       },
     }
   );
+};
+
+module.exports.getRandom = (arr) => {
+  return arr[Math.floor(Math.random() * arr.length)];
 };
 
 module.exports = {

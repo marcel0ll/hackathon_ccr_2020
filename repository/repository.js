@@ -12,9 +12,23 @@ class Repository {
   new(...parameters) {
     let instance = new this.recordClass(...parameters);
 
-    let asset = this.addHelpers(instance);
+    instance = this.addHelpers(instance);
 
-    return asset;
+    return instance;
+  }
+
+  from(record) {
+    let instance = this.new();
+
+    for (let key in instance) {
+      if (record.hasOwnProperty(key)) {
+        instance[key] = record[key];
+      }
+    }
+
+    console.log(instance);
+
+    return instance;
   }
 
   async find(queryObject) {}
@@ -56,6 +70,7 @@ class Repository {
     if (asset.update) delete asset.update;
     if (asset.delete) delete asset.delete;
     if (asset.recordName) delete asset.recordName;
+    if (asset._id) delete asset._id;
 
     return asset;
   }

@@ -6,6 +6,9 @@ class Place {
   horario_abertura;
   horario_fechamento;
   location;
+  score = 0;
+
+  partner = false;
 
   constructor(latitude, longitude, nome_fantasia) {
     this.nome_fantasia = nome_fantasia;
@@ -22,6 +25,14 @@ class Place {
       latitude,
       longitude,
     };
+  }
+
+  get latitude() {
+    return this.location.coordinates[1];
+  }
+
+  get longitude() {
+    return this.location.coordinates[0];
   }
 }
 

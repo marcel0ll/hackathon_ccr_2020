@@ -3,6 +3,8 @@ class User {
   phoneNumber;
   chatId;
   state = "init";
+  lastPlaceVisitedId;
+  options;
 
   constructor(firstName, chatId) {
     this.firstName = firstName;

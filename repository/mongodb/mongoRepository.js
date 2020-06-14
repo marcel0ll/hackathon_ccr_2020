@@ -13,17 +13,7 @@ class MongoRepository extends Repository {
     let collection = await this.db.collection(this.recordName);
     let records = await collection.find(queryObject).toArray();
 
-    return records.map((record) => {
-      let instance = this.new();
-
-      for (let key in record) {
-        if (record.hasOwnProperty(key)) {
-          instance[key] = record[key];
-        }
-      }
-
-      return instance;
-    });
+    return records.map((record) => this.from(record));
   }
 
   async findOne(queryObject = {}) {
@@ -34,15 +24,7 @@ class MongoRepository extends Repository {
       return;
     }
 
-    let instance = this.new();
-
-    for (let key in record) {
-      if (record.hasOwnProperty(key)) {
-        instance[key] = record[key];
-      }
-    }
-
-    return instance;
+    return this.from(record);
   }
 
   async list() {
@@ -65,15 +47,15 @@ class MongoRepository extends Repository {
   async update(queryObject = {}, record) {
     let collection = await this.db.collection(this.recordName);
     this.setUpdatedAt(record);
-    let response = await collection.updateMany(queryObject, { $set: record });
-    return response;
+    let reponse = await collection.updateMany(queryObject, { $set: record });
+    return this.from(reponse);
   }
 
   async updateOne(record) {
     let collection = await this.db.collection(this.recordName);
     this.setUpdatedAt(record);
     let response = await collection.updateOne(record.id, { $set: record });
-    return response;
+    return this.from(response);
   }
 
   async delete(queryObject = {}) {
@@ -83,17 +65,15 @@ class MongoRepository extends Repository {
   }
 
   async has(queryObject = {}) {
-    let record = await this.find(queryObject);
-    return record.length > 0;
+    let record = await this.findOne(queryObject);
+    return !!record;
   }
 
   // default distance 10km
   async near(longitude, latitude, distance = 300000) {
-    console.log(longitude, latitude);
-
     let collection = await this.db.collection(this.recordName);
 
-    let response = await collection
+    let records = await collection
       .find({
         location: {
           $near: {
@@ -105,33 +85,11 @@ class MongoRepository extends Repository {
           },
         },
       })
+      .sort({ score: -1 })
       .limit(10)
       .toArray();
 
-    return response;
-
-    /*
-    let aggregation = await collection.aggregate([
-      {
-        $geoNear: {
-          near: {
-            type: "Point",
-            coordinates: [longitude, latitude],
-          },
-          distanceField: "dist.calculated",
-          maxDistance: distance,
-          includeLocs: "dist.location",
-          spherical: true,
-        },
-      },
-      {
-        $limit: 10,
-      },
-    ]);
-
-    return aggregation.toArray();
-
-    */
+    return records.map((record) => this.from(record));
   }
 }
 

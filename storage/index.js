@@ -1,5 +1,6 @@
 const User = require("./user");
 const Place = require("./place");
+const Voto = require("./vote");
 
 const {
   TELEGRAM_BOT_API,
@@ -21,8 +22,10 @@ const repoOptions = {
 
 const users = new Repository(User, "users", repoOptions);
 const places = new Repository(Place, "places", repoOptions);
+const votes = new Repository(Voto, "votes", repoOptions);
 
 module.exports = {
   users,
   places,
+  votes,
 };

@@ -18,7 +18,7 @@ const token = TELEGRAM_BOT_API;
 // TODO: polling é ótimo para prototipo e testes, mas produção precisaria ser um webhook
 const bot = new TelegramBot(token, { polling: true });
 
-const { users } = require("./storage");
+const { users, places, votes } = require("./storage");
 
 const flows = {
   [banheiro.key]: banheiro,
@@ -78,6 +78,79 @@ const initFlow = async (msg, match) => {
       }
     );
   } else {
+    if (user.state === "visiting") {
+      let place = await places.findOne({
+        "location.coordinates": [
+          user.lastPlaceVisitedId.longitude,
+          user.lastPlaceVisitedId.latitude,
+        ],
+      });
+
+      bot.sendMessage(
+        msg.chat.id,
+        `${msg.from.first_name} você visitou ${place.nome_fantasia}?`,
+        {
+          reply_markup: {
+            one_time_keyboard: true,
+            keyboard: [["Sim", "Não"]],
+          },
+        }
+      );
+
+      user.state = "visiting.confirmation";
+      await user.save();
+    } else {
+      user.state = "init";
+      await user.save();
+
+      await teclado(msg);
+    }
+  }
+};
+
+const ynFlow = async (msg, match) => {
+  let user = await users.findOne({ chatId: msg.chat.id });
+  if (!user) {
+    return;
+  }
+
+  let reply = match[0];
+
+  if (reply === "Sim") {
+    let place = await places.findOne({
+      "location.coordinates": [
+        user.lastPlaceVisitedId.longitude,
+        user.lastPlaceVisitedId.latitude,
+      ],
+    });
+
+    if (user.state === "visiting.confirmation") {
+      bot.sendMessage(
+        msg.chat.id,
+        `Você recomendaria ${place.nome_fantasia}?`,
+        {
+          reply_markup: {
+            one_time_keyboard: true,
+            keyboard: [["Sim", "Não"]],
+          },
+        }
+      );
+
+      user.state = "visiting.voting";
+      await user.save();
+    } else if (user.state == "visiting.voting") {
+      let vote = votes.new(user, place);
+      await vote.save();
+
+      place.score += 1;
+      await place.save();
+
+      user.state = "init";
+      await user.save();
+
+      await teclado(msg);
+    }
+  } else {
     user.state = "init";
     await user.save();
 
@@ -91,6 +164,8 @@ const onMessage = async (msg) => {
   if (!user) {
     return;
   }
+
+  debug(user.firstName, user.state);
 
   // if there is msg on
   if (!user.phoneNumber && msg.contact) {
@@ -107,9 +182,9 @@ const onMessage = async (msg) => {
     if (Object.keys(flows).includes(user.state)) {
       const flow = flows[user.state];
 
-      flow.withLocation(bot, msg);
+      flow.withLocation(bot, msg, user);
 
-      user.state = "init";
+      user.state += ".options";
       await user.save();
       return;
     }
@@ -119,3 +194,4 @@ const onMessage = async (msg) => {
 bot.on("message", onMessage);
 bot.onText(/\/start/i, initFlow);
 bot.onText(/oi/i, initFlow);
+bot.onText(/Sim|Não/i, ynFlow);
