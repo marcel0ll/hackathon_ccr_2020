@@ -22,14 +22,12 @@ http
       default: noResponse,
     };
 
-    let reqUrl = new URL(req.url, "0.0.0.0");
+    let reqUrl = new URL(req.url, process.env.HOST);
 
     let redirectedFunc =
       router[req.method + reqUrl.pathname] || router["default"];
     redirectedFunc(req, res, reqUrl);
   })
-  .listen(process.env.HEALTH_PORT || 8080, () => {
-    console.log(
-      "Server is running at 0.0.0.0:" + (process.env.HEALTH_PORT || 8080)
-    );
+  .listen(process.env.PORT || 8080, () => {
+    console.log("Server is running at 0.0.0.0:" + (process.env.PORT || 8080));
   });
