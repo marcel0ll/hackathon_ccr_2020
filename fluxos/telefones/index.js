@@ -15,12 +15,18 @@ const main = (bot) => async (msg, match) => {
 
   bot.sendMessage(
     msg.chat.id,
-    `Polícia rodoviária: 111
-Polícia militar: 111
-Bombeiros: 111
-Concessionária: 111
-Centro de valorização da vida: 111
-Ambulância: 111`
+    `Bombeiros: 193
+Ambulância: 192
+
+Polícia Rodoviária Federal: 191
+Polícia Rodoviária Estadual: 198
+Polícia Militar: 190
+Polícia Civil: 197
+
+Disque Denúncia: 181
+
+Centro de Valorização da Vida - CVV: 188
+`
   );
 
   user.state = "init";
