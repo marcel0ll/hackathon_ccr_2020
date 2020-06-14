@@ -26,20 +26,7 @@ combustivel.init(bot);
 descanso.init(bot);
 dicas.init(bot);
 
-const initFlow = async (msg, match) => {
-  if (!(await users.has({ chatId: msg.chat.id }))) {
-    bot.sendMessage(
-      msg.chat.id,
-      `Fala meu chapa ${msg.from.first_name}! Para começarmos vou precisar de seu número.`,
-      {
-        reply_markup: {
-          one_time_keyboard: true,
-          keyboard: [[{ text: "Enviar número?", request_contact: true }]],
-        },
-      }
-    );
-  }
-
+const teclado = async (msg, match) => {
   bot.sendMessage(
     msg.chat.id,
     `O que você quer saber ${msg.chat.first_name}?`,
@@ -56,19 +43,39 @@ const initFlow = async (msg, match) => {
   );
 };
 
-const onMessage = async (msg) => {
-  debug(`${msg.from.first_name}`, msg);
-
+const initFlow = async (msg, match) => {
   // if user does not exist, register
+  let user;
   if (!(await users.has({ chatId: msg.chat.id }))) {
-    let user = users.new(msg.from.first_name, msg.chat.id);
+    user = users.new(msg.from.first_name, msg.chat.id);
 
     await user.save().catch((e) => error("failed to save user"));
     debug("Saved new user:", user.id);
 
     const allUsers = await users.list();
     debug("Users count:", process.env.REPO_TYPE, allUsers.length);
+  } else {
+    user = await users.findOne({ chatId: msg.chat.id });
   }
+
+  if (!user.phoneNumber) {
+    bot.sendMessage(
+      msg.chat.id,
+      `Fala meu chapa ${msg.from.first_name}! Para começarmos vou precisar de seu número.`,
+      {
+        reply_markup: {
+          one_time_keyboard: true,
+          keyboard: [[{ text: "Enviar número?", request_contact: true }]],
+        },
+      }
+    );
+  } else {
+    await teclado(msg, match);
+  }
+};
+
+const onMessage = async (msg) => {
+  debug(`${msg.from.first_name}`, msg);
 
   // if there is msg on
   if (msg.contact) {
@@ -77,16 +84,7 @@ const onMessage = async (msg) => {
     await user.save().catch((e) => error("failed to save user phone"));
     debug("Saved user phone:", user.id);
 
-    bot.sendMessage(msg.chat.id, `O que você quer saber ${user.firstName}?`, {
-      reply_markup: {
-        one_time_keyboard: true,
-        keyboard: [
-          [banheiro.key, alimentacao.key],
-          [combustivel.key, descanso.key],
-          [dicas.key],
-        ],
-      },
-    });
+    await teclado();
   }
 };
 
