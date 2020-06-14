@@ -8,7 +8,7 @@ saladas 🥗. Quanto mais colorida, melhor!`,
   [
     `RESPIRE PROFUNDAMENTE 🍃`,
     `Respire fundo, expandindo o seu peito. Solte lentamente o ar. Faça isso várias vezes ao
-dia. A respiração profunda diminui o estresse. 💆🏽‍♂️`,
+dia. A respiração profunda diminui o estresse. 💆`,
   ],
   [
     `CONVERSE COM UM PSICÓLOGO  🗣️👂🏽`,
