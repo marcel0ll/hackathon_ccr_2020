@@ -1,21 +1,21 @@
 const dicas = [
   [
-    `ALIMENTE-SE BEM`,
+    `ALIMENTE-SE BEM 😋`,
     `Diminua alimentos industrializados, ricos em sal, açúcares e gorduras. De prioridade a
-alimentos que não precisa abrir embalagem. Inclua frutas e não se esqueça das
-saladas. Quanto mais colorida, melhor!`,
+alimentos que não precisa abrir embalagem. Inclua frutas 🍉🍌🍇 e não se esqueça das
+saladas 🥗. Quanto mais colorida, melhor!`,
   ],
   [
-    `RESPIRE PROFUNDAMENTE`,
+    `RESPIRE PROFUNDAMENTE 🍃`,
     `Respire fundo, expandindo o seu peito. Solte lentamente o ar. Faça isso várias vezes ao
-dia. A respiração profunda diminui o estresse.`,
+dia. A respiração profunda diminui o estresse. 💆🏽‍♂️`,
   ],
   [
-    `CONVERSE COM UM PSICÓLOGO`,
+    `CONVERSE COM UM PSICÓLOGO  🗣️👂🏽`,
     `Se pensa que é preciso estar com alguma doença mental para procurar um Psicólogo,
 está enganado! Busque ajuda desse profissional ao perceber dificuldades em lidar com
 alguns sentimentos, frustrações, alterações no sono e no humor.  Ele irá te ajudar a
-cuidar disso!`,
+cuidar disso! 😉`,
   ],
   [
     `ALONGUE-SE`,
@@ -24,7 +24,7 @@ auxilia na recuperação da fadiga muscular, melhora a consciência corporal, pr
 dores, diminuir a tensão e o estresse.`,
   ],
   [
-    `BEBA MUITA ÁGUA`,
+    `BEBA MUITA ÁGUA 💦`,
     `Não espere até que esteja com sede antes de pegar um copo de água. Manter-se
 hidratado durante todo o dia pode ajudá-lo a ficar energizado e suprimir sentimentos
 de fome. A água ajuda a drenar nossos sistemas de resíduos e toxinas.`,

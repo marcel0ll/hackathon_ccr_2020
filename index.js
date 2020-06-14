@@ -22,6 +22,9 @@ const bot = new TelegramBot(token, { polling: true });
 
 const { users, places, votes } = require("./storage");
 
+const yes = "✅ Sim";
+const no = "❎ Não";
+
 const flows = {
   [banheiro.key]: banheiro,
   [alimentacao.key]: alimentacao,
@@ -93,7 +96,7 @@ const initFlow = async (msg, match) => {
         {
           reply_markup: {
             one_time_keyboard: true,
-            keyboard: [["Sim", "Não"]],
+            keyboard: [[yes, no]],
           },
         }
       );
@@ -117,7 +120,7 @@ const ynFlow = async (msg, match) => {
 
   let reply = match[0];
 
-  if (reply === "Sim") {
+  if (reply === yes) {
     let place = await places.findOne({
       longitude: user.lastPlaceVisitedId.longitude,
       latitude: user.lastPlaceVisitedId.latitude,
@@ -127,7 +130,7 @@ const ynFlow = async (msg, match) => {
       bot.sendMessage(msg.chat.id, `Você recomendaria ${place.nomeFantasia}?`, {
         reply_markup: {
           one_time_keyboard: true,
-          keyboard: [["Sim", "Não"]],
+          keyboard: [[yes, no]],
         },
       });
 
@@ -183,7 +186,7 @@ const onMessage = async (msg) => {
       const flow = flows[user.state];
 
       // migué para não ter que reescrever tudo
-      let returnInit = flow.withLocation(bot, msg, user);
+      let returnInit = await flow.withLocation(bot, msg, user);
 
       if (returnInit) {
         user.state = "init";
@@ -199,5 +202,6 @@ const onMessage = async (msg) => {
 
 bot.on("message", onMessage);
 bot.onText(/\/start/i, initFlow);
-bot.onText(/oi/i, initFlow);
-bot.onText(/Sim|Não/i, ynFlow);
+bot.onText(/^o+i+e*$/i, initFlow);
+bot.onText(/^ola$/i, initFlow);
+bot.onText(new RegExp(`${yes}\|${no}`, "i"), ynFlow);
