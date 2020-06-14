@@ -8,7 +8,8 @@ echo $MONGO_USER
 echo $MONGO_PASS
 echo $MONGO_URL
 
-MONGO_FULL_URL="mongodb://$MONGO_URL/$MONGO_DB_NAME"
+export MONGO_FULL_URL="mongodb://$MONGO_URL/$MONGO_DB_NAME"
+echo $MONGO_FULL_URL
 
 until mongo $MONGO_FULL_URL --eval "print(\"waited for connection\")"
 do

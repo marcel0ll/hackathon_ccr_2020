@@ -1,6 +1,6 @@
 require("dotenv").config({ path: "../../.env" });
 
-const places = require("./places.json");
+const places = require("./places.json").Pontos.Ponto;
 const { MongoClient } = require("mongodb");
 
 console.log("#places:", places.length);
