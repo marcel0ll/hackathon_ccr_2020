@@ -22,5 +22,9 @@ services:
     env_file: .env
     volumes:
       - ./data:/data/db
+      - "./.env:/usr/local/bin/.env"
+      - "./mongo-init.sh:/usr/local/bin/mongo-init.sh"
     ports:
       - "27017:27017"
+    command:
+      - "/usr/local/bin/mongo-init.sh"
