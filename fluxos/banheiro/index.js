@@ -1,4 +1,5 @@
-const { sleep } = require("../../util");
+const { sleep, requestLocation } = require("../../util");
+const { users } = require("../../storage");
 
 const key = "Banheiro";
 
@@ -7,12 +8,26 @@ const init = (bot) => {
 };
 
 const main = (bot) => async (msg, match) => {
-  const chatId = msg.chat.id;
+  let user = await users.findOne({ chatId: msg.chat.id });
+  if (!user) {
+    return;
+  }
 
-  bot.sendMessage(chatId, `Fluxo ${key}`);
+  user.state = key;
+  await user.save();
+
+  requestLocation(bot, msg);
+};
+
+const withLocation = (bot, msg) => {
+  bot.sendMessage(
+    msg.chat.id,
+    `Sua localização: ${msg.location.longitude} / ${msg.location.latitude} pro banheiro`
+  );
 };
 
 module.exports = {
   key,
   init,
+  withLocation,
 };

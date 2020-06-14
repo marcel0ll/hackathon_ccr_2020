@@ -15,7 +15,7 @@ MongoClient.connect(url)
     const db = client.db(dbName);
     let collection = await db.collection("places");
 
-    places.forEach(async (place) => {
+    let promises = places.map(async (place) => {
       const {
         nome_fantasia,
         categoria,
@@ -36,6 +36,10 @@ MongoClient.connect(url)
         latitude,
       } = place;
 
+      if (!longitude || !latitude) {
+        return;
+      }
+
       const record = {
         nome_fantasia,
         categoria,
@@ -54,12 +58,15 @@ MongoClient.connect(url)
 
         location: {
           type: "Point",
-          coordinates: [longitude, latitude],
+          coordinates: [parseFloat(longitude), parseFloat(latitude)],
         },
       };
 
-      await collection.insert(record).catch((err) => console.log(telefone));
+      return collection.insert(record);
     });
+
+    await Promise.all(promises);
+    console.log("Inserted all");
 
     process.exit(0);
   })

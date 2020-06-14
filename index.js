@@ -19,6 +19,13 @@ const bot = new TelegramBot(token, { polling: true });
 
 const { users } = require("./storage");
 
+const flows = {
+  [banheiro.key]: banheiro,
+  [alimentacao.key]: alimentacao,
+  [combustivel.key]: combustivel,
+  [descanso.key]: descanso,
+  [dicas.key]: dicas,
+};
 // fluxos
 banheiro.init(bot);
 alimentacao.init(bot);
@@ -26,7 +33,7 @@ combustivel.init(bot);
 descanso.init(bot);
 dicas.init(bot);
 
-const teclado = async (msg, match) => {
+const teclado = async (msg) => {
   bot.sendMessage(
     msg.chat.id,
     `O que você quer saber ${msg.chat.first_name}?`,
@@ -70,21 +77,41 @@ const initFlow = async (msg, match) => {
       }
     );
   } else {
-    await teclado(msg, match);
+    user.state = "init";
+    await user.save();
+
+    await teclado(msg);
   }
 };
 
 const onMessage = async (msg) => {
   debug(`${msg.from.first_name}`, msg);
+  let user = await users.findOne({ chatId: msg.chat.id });
+  if (!user) {
+    return;
+  }
 
   // if there is msg on
-  if (msg.contact) {
+  if (!user.phoneNumber && msg.contact) {
     let user = await users.findOne({ chatId: msg.chat.id });
     user.phoneNumber = msg.contact.phone_number;
     await user.save().catch((e) => error("failed to save user phone"));
     debug("Saved user phone:", user.id);
 
-    await teclado();
+    await teclado(msg);
+    return;
+  }
+
+  if (msg.location) {
+    if (Object.keys(flows).includes(user.state)) {
+      const flow = flows[user.state];
+
+      flow.withLocation(bot, msg);
+
+      user.state = "init";
+      await user.save();
+      return;
+    }
   }
 };
 

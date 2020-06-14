@@ -86,6 +86,53 @@ class MongoRepository extends Repository {
     let record = await this.find(queryObject);
     return record.length > 0;
   }
+
+  // default distance 10km
+  async near(longitude, latitude, distance = 300000) {
+    console.log(longitude, latitude);
+
+    let collection = await this.db.collection(this.recordName);
+
+    let response = await collection
+      .find({
+        location: {
+          $near: {
+            $geometry: {
+              type: "Point",
+              coordinates: [longitude, latitude],
+            },
+            $maxDistance: distance,
+          },
+        },
+      })
+      .limit(10)
+      .toArray();
+
+    return response;
+
+    /*
+    let aggregation = await collection.aggregate([
+      {
+        $geoNear: {
+          near: {
+            type: "Point",
+            coordinates: [longitude, latitude],
+          },
+          distanceField: "dist.calculated",
+          maxDistance: distance,
+          includeLocs: "dist.location",
+          spherical: true,
+        },
+      },
+      {
+        $limit: 10,
+      },
+    ]);
+
+    return aggregation.toArray();
+
+    */
+  }
 }
 
 module.exports = MongoRepository;

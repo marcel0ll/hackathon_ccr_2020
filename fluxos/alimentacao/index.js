@@ -12,7 +12,15 @@ const main = (bot) => async (msg, match) => {
   bot.sendMessage(chatId, `Fluxo ${key}`);
 };
 
+const withLocation = (bot, msg) => {
+  bot.sendMessage(
+    msg.chat.id,
+    `Sua localização: ${msg.location.long} / ${msg.location.lat}`
+  );
+};
+
 module.exports = {
   key,
   init,
+  withLocation,
 };

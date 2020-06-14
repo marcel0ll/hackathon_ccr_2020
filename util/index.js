@@ -18,6 +18,19 @@ module.exports.error = (...msg) => {
   console.error(...msg);
 };
 
+module.exports.requestLocation = (bot, msg) => {
+  bot.sendMessage(
+    msg.chat.id,
+    `Meu chapa ${msg.from.first_name}! Vou precisar da sua localização.`,
+    {
+      reply_markup: {
+        one_time_keyboard: true,
+        keyboard: [[{ text: "Enviar localização?", request_location: true }]],
+      },
+    }
+  );
+};
+
 module.exports = {
   ...module.exports,
   isProd,

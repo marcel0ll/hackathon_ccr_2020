@@ -1,4 +1,5 @@
 const User = require("./user");
+const Place = require("./place");
 
 const {
   TELEGRAM_BOT_API,
@@ -18,8 +19,10 @@ const repoOptions = {
   dbName: MONGO_DB_NAME,
 };
 
-const users = new Repository(User, "user", repoOptions);
+const users = new Repository(User, "users", repoOptions);
+const places = new Repository(Place, "places", repoOptions);
 
 module.exports = {
   users,
+  places,
 };

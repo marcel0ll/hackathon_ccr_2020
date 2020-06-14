@@ -2,6 +2,7 @@ class User {
   firstName;
   phoneNumber;
   chatId;
+  state = "init";
 
   constructor(firstName, chatId) {
     this.firstName = firstName;
