@@ -28,6 +28,8 @@ http
       router[req.method + reqUrl.pathname] || router["default"];
     redirectedFunc(req, res, reqUrl);
   })
-  .listen(80, () => {
-    console.log("Server is running at 0.0.0.0:80/");
+  .listen(process.env.HEALTH_PORT || 8080, () => {
+    console.log(
+      "Server is running at 0.0.0.0:" + (process.env.HEALTH_PORT || 8080)
+    );
   });
