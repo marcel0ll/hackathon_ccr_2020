@@ -204,4 +204,6 @@ bot.on("message", onMessage);
 bot.onText(/\/start/i, initFlow);
 bot.onText(/^o+i+e*$/i, initFlow);
 bot.onText(/^ola$/i, initFlow);
+bot.onText(/^olá$/i, initFlow);
+bot.onText(/^opa$/i, initFlow);
 bot.onText(new RegExp(`${yes}\|${no}`, "i"), ynFlow);

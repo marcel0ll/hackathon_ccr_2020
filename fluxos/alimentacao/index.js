@@ -53,7 +53,7 @@ const withLocation = async (bot, msg, user) => {
       longitude: o.longitude,
     });
 
-    return `${i + 1}. (${count.length}) ${o.nomeFantasia}`;
+    return `${i + 1}. ${count.length}👍 ${o.nomeFantasia}`;
   });
 
   let keys = await Promise.all(keysPromises);
