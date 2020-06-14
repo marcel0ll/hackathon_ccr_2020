@@ -1,15 +1,18 @@
-[ ] Apresentar resultado em forma lista de opções ordenadas por pontuação (score)
-[ ] Deixar espaço para parceiros
+[x] Apresentar resultado em forma lista de opções ordenadas por pontuação (score)
+[x] Deixar espaço para parceiros
 
-[ ] Permitir seleção de opção
-  [ ] Mostrar mais informações
-  [ ] enviar location
+[x] Permitir seleção de opção
+  [x] Mostrar mais informações
+  [x] enviar location
 
-[ ] Perguntar opinião do local em próxima interação com bot
-  [ ] aumentar score quando selecionado
+[x] Perguntar opinião do local em próxima interação com bot
+  [x] aumentar score quando selecionado
+
+[x] Listar parceiros
 
 [ ] Inserir dicas
-[ ] Listar parceiros
+
+[x] clonar funcionamento do combustivel nos outros fluxos
 
 ---
 
