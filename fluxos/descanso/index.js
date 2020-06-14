@@ -85,14 +85,17 @@ const choseOption = (bot) => async (msg, match) => {
 
   bot.sendMessage(msg.chat.id, `Descanse um pouco no ${option.nomeFantasia}`);
   if (option.telefone) {
-    await sleep(1.5);
+    bot.sendChatAction(msg.chat.id, "typing");
+    await sleep(1.3);
     bot.sendMessage(msg.chat.id, `Telefone: ${option.telefone}`);
   }
-  await sleep(1.5);
+  bot.sendChatAction(msg.chat.id, "typing");
+  await sleep(1.3);
   bot.sendLocation(msg.chat.id, option.latitude, option.longitude);
 
-  await sleep(1.5);
-  bot.sendMessage(msg.chat.id, `Espero que você goste!`);
+  bot.sendChatAction(msg.chat.id, "typing");
+  await sleep(1.3);
+  bot.sendMessage(msg.chat.id, `Espero que você goste! 👍`);
 
   user.lastPlaceVisitedId = option.id;
 
