@@ -12,6 +12,7 @@ const alimentacao = require("./fluxos/alimentacao");
 const combustivel = require("./fluxos/combustivel");
 const descanso = require("./fluxos/descanso");
 const dicas = require("./fluxos/dicas");
+const telefones = require("./fluxos/telefones");
 
 const token = TELEGRAM_BOT_API;
 
@@ -25,7 +26,6 @@ const flows = {
   [alimentacao.key]: alimentacao,
   [combustivel.key]: combustivel,
   [descanso.key]: descanso,
-  [dicas.key]: dicas,
 };
 // fluxos
 banheiro.init(bot);
@@ -33,6 +33,7 @@ alimentacao.init(bot);
 combustivel.init(bot);
 descanso.init(bot);
 dicas.init(bot);
+telefones.init(bot);
 
 const teclado = async (msg) => {
   bot.sendMessage(
@@ -45,6 +46,7 @@ const teclado = async (msg) => {
           [banheiro.key, alimentacao.key],
           [combustivel.key, descanso.key],
           [dicas.key],
+          [telefones.key],
         ],
       },
     }
