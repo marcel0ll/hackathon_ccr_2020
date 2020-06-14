@@ -22,12 +22,12 @@ http
       default: noResponse,
     };
 
-    let reqUrl = new URL(req.url, "http://127.0.0.1/");
+    let reqUrl = new URL(req.url, "0.0.0.0");
 
     let redirectedFunc =
       router[req.method + reqUrl.pathname] || router["default"];
     redirectedFunc(req, res, reqUrl);
   })
   .listen(80, () => {
-    console.log("Server is running at http://127.0.0.1:80/");
+    console.log("Server is running at 0.0.0.0:80/");
   });
