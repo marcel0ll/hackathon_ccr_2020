@@ -69,7 +69,8 @@ class MongoRepository extends Repository {
     return !!record;
   }
 
-  // default distance 10km
+  // default distance should be 10km
+  // using higher distance for prototype
   // TODO: generalize code
   async near(longitude, latitude, distance = 300000) {
     let collection = await this.db.collection(this.recordName);
@@ -91,13 +92,6 @@ class MongoRepository extends Repository {
 
     return records
       .map((record) => this.from(record))
-      .filter((a, i) => {
-        return (
-          records.findIndex(
-            (b) => b.longitude === a.longitude && b.latitude === a.latitude
-          ) === i
-        );
-      })
       .sort((a, b) => a.score - b.score);
   }
 }
