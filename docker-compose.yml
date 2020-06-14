@@ -8,7 +8,7 @@ services:
     volumes:
       - ./:/meu_chapa
     depends_on:
-      - mongo
+      - mongoClient
     links:
       - mongo
     ports:
@@ -24,3 +24,17 @@ services:
       - ./data:/data/db
     ports:
       - "27017:27017"
+
+  mongoClient:
+    container_name: mongoClient
+    image: mongo
+    env_file: .env
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    volumes:
+      - ./.env:/usr/local/bin/.env
+      - ./mongo-init.sh:/usr/local/bin/mongo-init.sh
+    command:
+      - /usr/local/bin/mongo-init.sh
