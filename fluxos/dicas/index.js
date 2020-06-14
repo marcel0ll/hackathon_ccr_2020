@@ -117,12 +117,16 @@ const onFale = (bot) => async (msg, match) => {
     return [e[0]];
   });
 
-  bot.sendMessage(msg.chat.id, `Esses são os medicos disponíveis na região!`, {
-    reply_markup: {
-      one_time_keyboard: true,
-      keyboard: [...buttons],
-    },
-  });
+  bot.sendMessage(
+    msg.chat.id,
+    `Esses são os profissionais da saúde disponíveis na região!`,
+    {
+      reply_markup: {
+        one_time_keyboard: true,
+        keyboard: [...buttons],
+      },
+    }
+  );
 
   user.state = `${key}.fale`;
   await user.save();

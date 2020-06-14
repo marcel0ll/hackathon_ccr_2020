@@ -10,9 +10,15 @@
 
 [x] Listar parceiros
 
-[ ] Inserir dicas
+[x] Inserir dicas
 
 [x] clonar funcionamento do combustivel nos outros fluxos
+
+[ ] inserir dados de local
+
+[ ] Processar número digitado
+[ ] Teclado de inicialização de conversa
+
 
 ---
 

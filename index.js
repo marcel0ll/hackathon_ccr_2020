@@ -67,7 +67,9 @@ const initFlow = async (msg, match) => {
   if (!user.phoneNumber) {
     bot.sendMessage(
       msg.chat.id,
-      `Fala meu chapa ${msg.from.first_name}! Para começarmos vou precisar de seu número.`,
+      `Fala meu chapa ${msg.from.first_name}! Para começarmos vou precisar de seu telefone.
+É só clicar no botão abaixo!
+      `,
       {
         reply_markup: {
           one_time_keyboard: true,
@@ -137,6 +139,11 @@ const ynFlow = async (msg, match) => {
 
       user.state = "init";
       await user.save();
+
+      bot.sendMessage(
+        msg.chat.id,
+        `Agradeço por responder, isso ajuda todos os caminhoneiros 🙂`
+      );
 
       await teclado(msg);
     }
