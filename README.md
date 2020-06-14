@@ -1,29 +1,50 @@
 # HACKATHON CCR
 
-projeto meu chapa
+Repositório com descrição do projeto inteiro, mas somente código do bot.
 
-## Dependencies
+## Stack utilizada
 
-- node (use nvm e .nvmrc para a versão do node)
+### @meu_chapa_bot
+
+- heroku (para subir aplicação e permitir boa execução
+- docker (para facilitar desenvolvimento local)
+- nodejs 12.X
+- node-telegram-bot-api (SDK que integra node com api http do telegram)
+- mongodb (driver em nodejs para mongodb)
+- outros: express, prettier, husky, dotenv, nodemon
+
+### Landing page
+
+- godaddy (dominio e DNS)
+- droplet digital ocean
+- Wordpress
+- Tema Monstroid2
+
+## APIs
+
+- Foi minerado e tratas as informações do https://suportebr.prf.gov.br/#/dashboard
+
+### APIs Candidatas
+
+- Google Maps
+- Twillio SMS
+- Twillio Whatsapp
 
 ## Instalando
 
-`npm install`
+```sh
+sudo docker-compose up
+```
 
 ## Rodando localmente
 
-1. criar arquivo local .env a partir de .env.example
-2. preencher .env com variáveis
-3. roda `docker-compose up`
-4. rode `./mongo.sh`
+1. criar arquivo local .env a partir de exemplo .env.example
+2. preencher .env com variáveis (principal é o TOKEN de um bot para testes)
+3. rodar `docker-compose up`
 
 ps: usar chrome://inspect -> "open dedicated DevTools for node" para que possa monitorar o console local
 
-bots de teste:
-@m_local_meu_chapa_bot
-@l_local_meu_chapa_bot
-
-## Entregando app
+## Subindo o app
 
 O app está configurado no heroku para a cada push no `master` fazer deploy novamente do app para o bot @meu_chapa_bot no
 telegram
