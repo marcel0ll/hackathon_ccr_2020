@@ -76,10 +76,14 @@ const choseOption = (bot) => async (msg, match) => {
     return;
   }
 
+  if (user.state !== `${key}.options`) {
+    return;
+  }
+
   let i = parseInt(match[0]) - 1;
   let option = places.from(user.options[i]);
 
-  bot.sendMessage(msg.chat.id, `Este é o ${option.nomeFantasia}`);
+  bot.sendMessage(msg.chat.id, `Aproveite o ${option.nomeFantasia} para comer`);
   if (option.telefone) {
     await sleep(1.5);
     bot.sendMessage(msg.chat.id, `Telefone: ${option.telefone}`);
