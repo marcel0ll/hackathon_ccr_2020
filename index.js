@@ -36,21 +36,17 @@ dicas.init(bot);
 telefones.init(bot);
 
 const teclado = async (msg) => {
-  bot.sendMessage(
-    msg.chat.id,
-    `O que você quer saber ${msg.chat.first_name}?`,
-    {
-      reply_markup: {
-        one_time_keyboard: true,
-        keyboard: [
-          [banheiro.key, alimentacao.key],
-          [combustivel.key, descanso.key],
-          [dicas.key],
-          [telefones.key],
-        ],
-      },
-    }
-  );
+  bot.sendMessage(msg.chat.id, `O que você precisa ${msg.chat.first_name}?`, {
+    reply_markup: {
+      one_time_keyboard: true,
+      keyboard: [
+        [banheiro.key, alimentacao.key],
+        [combustivel.key, descanso.key],
+        [dicas.key],
+        [telefones.key],
+      ],
+    },
+  });
 };
 
 const initFlow = async (msg, match) => {
