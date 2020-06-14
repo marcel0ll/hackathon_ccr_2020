@@ -88,7 +88,7 @@ const initFlow = async (msg, match) => {
 
       bot.sendMessage(
         msg.chat.id,
-        `${msg.from.first_name} você visitou ${place.nome_fantasia}?`,
+        `${msg.from.first_name} você visitou ${place.nomeFantasia}?`,
         {
           reply_markup: {
             one_time_keyboard: true,
@@ -125,16 +125,12 @@ const ynFlow = async (msg, match) => {
     });
 
     if (user.state === "visiting.confirmation") {
-      bot.sendMessage(
-        msg.chat.id,
-        `Você recomendaria ${place.nome_fantasia}?`,
-        {
-          reply_markup: {
-            one_time_keyboard: true,
-            keyboard: [["Sim", "Não"]],
-          },
-        }
-      );
+      bot.sendMessage(msg.chat.id, `Você recomendaria ${place.nomeFantasia}?`, {
+        reply_markup: {
+          one_time_keyboard: true,
+          keyboard: [["Sim", "Não"]],
+        },
+      });
 
       user.state = "visiting.voting";
       await user.save();

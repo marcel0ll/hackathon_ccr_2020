@@ -26,7 +26,16 @@ const withLocation = async (bot, msg, user) => {
   let near = await places.near(longitude, latitude);
   let nearPartners = near.filter((p) => p.partner);
 
-  let counter = 5;
+  if (!near.length) {
+    bot.sendMessage(msg.chat.id, `Não encontrei nada próximo`);
+
+    user.state = "init";
+    await user.save();
+
+    return;
+  }
+
+  let counter = Math.min(5, near.length);
   let options = [];
 
   if (nearPartners.length) {
@@ -47,7 +56,7 @@ const withLocation = async (bot, msg, user) => {
       longitude: o.longitude,
     });
 
-    return `${i + 1}. (${count.length}) ${o.nome_fantasia}`;
+    return `${i + 1}. (${count.length}) ${o.nomeFantasia}`;
   });
 
   let keys = await Promise.all(keysPromises);
@@ -70,7 +79,7 @@ const choseOption = (bot) => async (msg, match) => {
   let i = parseInt(match[0]) - 1;
   let option = places.from(user.options[i]);
 
-  bot.sendMessage(msg.chat.id, `Este é o ${option.nome_fantasia}`);
+  bot.sendMessage(msg.chat.id, `Este é o ${option.nomeFantasia}`);
   if (option.telefone) {
     await sleep(1.5);
     bot.sendMessage(msg.chat.id, `Telefone: ${option.telefone}`);
