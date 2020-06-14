@@ -1,0 +1,16 @@
+[ ] Apresentar resultado em forma lista de opções ordenadas por pontuação (score)
+[ ] Deixar espaço para parceiros
+
+[ ] Permitir seleção de opção
+  [ ] Mostrar mais informações
+  [ ] enviar location
+
+[ ] Perguntar opinião do local em próxima interação com bot
+  [ ] aumentar score quando selecionado
+
+[ ] Inserir dicas
+[ ] Listar parceiros
+
+---
+
+[ ] Atualizar landingpage
