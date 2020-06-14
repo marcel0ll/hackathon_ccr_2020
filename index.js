@@ -80,10 +80,8 @@ const initFlow = async (msg, match) => {
   } else {
     if (user.state === "visiting") {
       let place = await places.findOne({
-        "location.coordinates": [
-          user.lastPlaceVisitedId.longitude,
-          user.lastPlaceVisitedId.latitude,
-        ],
+        longitude: user.lastPlaceVisitedId.longitude,
+        latitude: user.lastPlaceVisitedId.latitude,
       });
 
       bot.sendMessage(
@@ -118,10 +116,8 @@ const ynFlow = async (msg, match) => {
 
   if (reply === "Sim") {
     let place = await places.findOne({
-      "location.coordinates": [
-        user.lastPlaceVisitedId.longitude,
-        user.lastPlaceVisitedId.latitude,
-      ],
+      longitude: user.lastPlaceVisitedId.longitude,
+      latitude: user.lastPlaceVisitedId.latitude,
     });
 
     if (user.state === "visiting.confirmation") {

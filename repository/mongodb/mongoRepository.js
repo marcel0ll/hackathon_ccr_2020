@@ -92,7 +92,7 @@ class MongoRepository extends Repository {
 
     return records
       .map((record) => this.from(record))
-      .sort((a, b) => a.score - b.score);
+      .sort((a, b) => b.score - a.score);
   }
 }
 

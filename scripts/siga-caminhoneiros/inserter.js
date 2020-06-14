@@ -52,8 +52,8 @@ MongoClient.connect(url)
           score: 0,
           partner: false,
 
-          latitude: parseFloat(latitude),
-          longitude: parseFloat(longitude),
+          latitude,
+          longitude,
 
           location: {
             type: "Point",
