@@ -29,5 +29,7 @@ http
     redirectedFunc(req, res, reqUrl);
   })
   .listen(process.env.PORT || 8080, () => {
-    console.log("Server is running at 0.0.0.0:" + (process.env.PORT || 8080));
+    console.log(
+      "Server is running at " + process.env.HOST + (process.env.PORT || 8080)
+    );
   });
