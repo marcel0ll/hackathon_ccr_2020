@@ -51,11 +51,12 @@ const withLocation = async (bot, msg, user) => {
   });
 
   let keys = await Promise.all(keysPromises);
+  keys = keys.map((k) => [k]);
 
   bot.sendMessage(msg.chat.id, `Estes são os postos próximos`, {
     reply_markup: {
       one_time_keyboard: true,
-      keyboard: [keys],
+      keyboard: [...keys],
     },
   });
 };

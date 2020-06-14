@@ -41,20 +41,18 @@ MongoClient.connect(url)
       }
 
       const record = {
-        nome_fantasia,
-        categoria,
+        nomeFantasia: nome_fantasia,
         telefone,
-        sg_uf,
-        no_uf,
+        uf: sg_uf,
         municipio,
-        br,
-        km,
-        periodo,
-        sempre_aberto,
-        horario_abertura,
-        horario_fechamento,
-        observacoes,
-        status,
+        horarioAbertura: horario_abertura,
+        horarioFechamento: horario_fechamento,
+        tags: [categoria],
+        score: 0,
+        partner: false,
+
+        latitude: parseFloat(longitude),
+        longitude: parseFloat(latitude),
 
         location: {
           type: "Point",

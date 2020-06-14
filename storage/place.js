@@ -1,17 +1,21 @@
 class Place {
-  nome_fantasia;
+  nomeFantasia;
   telefone;
+  uf;
   municipio;
-  sempre_aberto;
-  horario_abertura;
-  horario_fechamento;
-  location;
+  horarioAbertura;
+  horarioFechamento;
+  tags;
   score = 0;
-
   partner = false;
 
-  constructor(latitude, longitude, nome_fantasia) {
-    this.nome_fantasia = nome_fantasia;
+  latitude;
+  longitude;
+
+  location;
+
+  constructor(latitude, longitude, nomeFantasia) {
+    this.nomeFantasia = nomeFantasia;
     this.location = {
       type: "Point",
       coordinates: [longitude, latitude],
@@ -19,20 +23,10 @@ class Place {
   }
 
   get id() {
-    const [longitude, latitude] = this.location.coordinates;
-
     return {
-      latitude,
-      longitude,
+      longitude: this.longitude,
+      latitude: this.latitude,
     };
-  }
-
-  get latitude() {
-    return this.location.coordinates[1];
-  }
-
-  get longitude() {
-    return this.location.coordinates[0];
   }
 }
 

@@ -76,7 +76,7 @@ class MongoRepository extends Repository {
     let records = await collection
       .find({
         location: {
-          $near: {
+          $nearSphere: {
             $geometry: {
               type: "Point",
               coordinates: [longitude, latitude],
@@ -85,7 +85,6 @@ class MongoRepository extends Repository {
           },
         },
       })
-      .sort({ score: -1 })
       .limit(10)
       .toArray();
 
