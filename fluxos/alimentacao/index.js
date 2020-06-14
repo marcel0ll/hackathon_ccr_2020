@@ -29,10 +29,7 @@ const withLocation = async (bot, msg, user) => {
   if (!near.length) {
     bot.sendMessage(msg.chat.id, `Não encontrei nada próximo`);
 
-    user.state = "init";
-    await user.save();
-
-    return;
+    return true;
   }
 
   let counter = Math.min(5, near.length);

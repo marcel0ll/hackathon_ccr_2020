@@ -13,6 +13,7 @@ const combustivel = require("./fluxos/combustivel");
 const descanso = require("./fluxos/descanso");
 const dicas = require("./fluxos/dicas");
 const telefones = require("./fluxos/telefones");
+const inserirLocal = require("./fluxos/inserir");
 
 const token = TELEGRAM_BOT_API;
 
@@ -26,6 +27,7 @@ const flows = {
   [alimentacao.key]: alimentacao,
   [combustivel.key]: combustivel,
   [descanso.key]: descanso,
+  [inserirLocal.key]: inserirLocal,
 };
 // fluxos
 banheiro.init(bot);
@@ -34,6 +36,7 @@ combustivel.init(bot);
 descanso.init(bot);
 dicas.init(bot);
 telefones.init(bot);
+inserirLocal.init(bot);
 
 const teclado = async (msg) => {
   bot.sendMessage(msg.chat.id, `O que você precisa ${msg.chat.first_name}?`, {
@@ -42,7 +45,7 @@ const teclado = async (msg) => {
       keyboard: [
         [banheiro.key, alimentacao.key],
         [combustivel.key, descanso.key],
-        [dicas.key],
+        [dicas.key, inserirLocal.key],
         [telefones.key],
       ],
     },
@@ -179,9 +182,15 @@ const onMessage = async (msg) => {
     if (Object.keys(flows).includes(user.state)) {
       const flow = flows[user.state];
 
-      flow.withLocation(bot, msg, user);
+      // migué para não ter que reescrever tudo
+      let returnInit = flow.withLocation(bot, msg, user);
 
-      user.state += ".options";
+      if (returnInit) {
+        user.state = "init";
+      } else {
+        user.state += ".options";
+      }
+
       await user.save();
       return;
     }
