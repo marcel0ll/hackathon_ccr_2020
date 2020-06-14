@@ -12,6 +12,7 @@ services:
     links:
       - mongo
     ports:
+      - "80:80"
       - "9229:9229"
 
   mongo:

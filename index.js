@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./server");
 
 const { debug, error } = require("./util");
 
