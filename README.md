@@ -1,4 +1,4 @@
-# HACKATHON CCR
+# HACKATHON CCR - time 136
 
 Repositório com descrição do projeto inteiro, mas somente código do bot.
 
