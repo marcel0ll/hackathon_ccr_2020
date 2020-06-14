@@ -56,7 +56,9 @@ const withLocation = async (bot, msg, user) => {
       longitude: o.longitude,
     });
 
-    return `${i + 1}. ${count.length}👍 ${o.nomeFantasia}`;
+    let star = i === 0 ? `⭐ ` : "";
+    let top = count.length ? ` 👍 ${count.length}` : "";
+    return `${i + 1}. ${star}${o.nomeFantasia}${top}`;
   });
 
   let keys = await Promise.all(keysPromises);
