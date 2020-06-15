@@ -39,6 +39,13 @@ const withLocation = (bot, msg, user) => {
     `Muito obrigado ${msg.from.first_name}, vou analisar e te aviso!`
   );
 
+  bot.sendMessage(msg.chat.id, `Precisa de mais alguma coisa?`, {
+    reply_markup: {
+      one_time_keyboard: true,
+      keyboard: [["Opa"]],
+    },
+  });
+
   return true;
 };
 

@@ -29,6 +29,15 @@ Centro de Valorização da Vida - CVV: 188
 `
   );
 
+  sleep(2);
+
+  bot.sendMessage(msg.chat.id, `Se precisar, só enviar um oi`, {
+    reply_markup: {
+      one_time_keyboard: true,
+      keyboard: [["Oi"]],
+    },
+  });
+
   user.state = "init";
   await user.save();
 };

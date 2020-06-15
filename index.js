@@ -1,7 +1,7 @@
 require("dotenv").config();
 require("./server");
 
-const { debug, error } = require("./util");
+const { sleep, debug, error } = require("./util");
 
 const { TELEGRAM_BOT_API } = process.env;
 
@@ -151,6 +151,8 @@ const ynFlow = async (msg, match) => {
         `Agradeço por responder, isso ajuda todos os caminhoneiros 🙂`
       );
 
+      await sleep(1);
+
       await teclado(msg);
     }
   } else {
@@ -205,5 +207,17 @@ bot.onText(/\/start/i, initFlow);
 bot.onText(/^o+i+e*$/i, initFlow);
 bot.onText(/^ola$/i, initFlow);
 bot.onText(/^olá$/i, initFlow);
+bot.onText(/^Quero sim!$/i, initFlow);
 bot.onText(/^opa$/i, initFlow);
 bot.onText(new RegExp(`${yes}\|${no}`, "i"), ynFlow);
+
+bot.onText(new RegExp(`Cancelar!`), async (msg, match) => {
+  await sleep(1);
+
+  bot.sendMessage(msg.chat.id, `Opa! Qualquer coisa só mandar um olá!`, {
+    reply_markup: {
+      one_time_keyboard: true,
+      keyboard: [["olá"]],
+    },
+  });
+});

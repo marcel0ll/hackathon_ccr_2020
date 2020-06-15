@@ -14,12 +14,11 @@
 
 [x] clonar funcionamento do combustivel nos outros fluxos
 
-[ ] inserir dados de local
+[x] inserir dados de local
 
-[ ] Processar número digitado
-[ ] Teclado de inicialização de conversa
+[x] Teclado de inicialização de conversa no final dos fluxos
 
-
+[-] Processar número digitado
 ---
 
-[ ] Atualizar landingpage
+[x] Atualizar landingpage

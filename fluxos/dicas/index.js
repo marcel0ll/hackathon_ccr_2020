@@ -72,6 +72,14 @@ const onDicas = (bot) => async (msg, match) => {
     await sleep(0.6);
   }
 
+  await sleep(1);
+  bot.sendMessage(msg.chat.id, `Quer saber mais?`, {
+    reply_markup: {
+      one_time_keyboard: true,
+      keyboard: [["Quero sim!"]],
+    },
+  });
+
   user.state = "init";
   await user.save();
 };
@@ -153,6 +161,14 @@ const onEventoAnswer = (bot) => async (msg, match) => {
     }
   }
 
+  await sleep(1);
+  bot.sendMessage(msg.chat.id, `Quer saber mais?`, {
+    reply_markup: {
+      one_time_keyboard: true,
+      keyboard: [["Quero sim!"]],
+    },
+  });
+
   user.state = "init";
   await user.save();
 };
@@ -172,11 +188,19 @@ const onFaleAnswer = (bot) => async (msg, match) => {
   let contato = contatos.find((e) => e[0] === evtKey);
 
   if (contato) {
-    for (let i = 0; i < evento.length; i++) {
-      bot.sendMessage(msg.chat.id, evento[i]);
+    for (let i = 0; i < contato.length; i++) {
+      bot.sendMessage(msg.chat.id, contato[i]);
       await sleep(0.6);
     }
   }
+
+  await sleep(1);
+  bot.sendMessage(msg.chat.id, `Quer saber mais?`, {
+    reply_markup: {
+      one_time_keyboard: true,
+      keyboard: [["Quero sim!"]],
+    },
+  });
 
   user.state = "init";
   await user.save();
@@ -193,6 +217,14 @@ const onSite = (bot) => async (msg, match) => {
   }
 
   bot.sendMessage(msg.chat.id, `https://omeuchapa.com/info`);
+
+  await sleep(1);
+  bot.sendMessage(msg.chat.id, `Quer saber mais?`, {
+    reply_markup: {
+      one_time_keyboard: true,
+      keyboard: [["Quero sim!"]],
+    },
+  });
 
   user.state = "init";
   await user.save();

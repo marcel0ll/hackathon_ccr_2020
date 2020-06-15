@@ -102,6 +102,14 @@ const choseOption = (bot) => async (msg, match) => {
   await sleep(1.3);
   bot.sendMessage(msg.chat.id, `Espero que você goste! 👍`);
 
+  await sleep(1);
+  bot.sendMessage(msg.chat.id, `Se precisar de mim, é só mandar um oi!`, {
+    reply_markup: {
+      one_time_keyboard: true,
+      keyboard: [["oi"]],
+    },
+  });
+
   user.lastPlaceVisitedId = option.id;
 
   user.state = "visiting";
