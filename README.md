@@ -13,12 +13,16 @@ Repositório com descrição do projeto inteiro, mas somente código do bot.
 - mongodb (driver em nodejs para mongodb)
 - outros: express, prettier, husky, dotenv, nodemon
 
+https://t.me/meu_chapa_bot
+
 ### Landing page
 
 - godaddy (dominio e DNS)
 - droplet digital ocean
 - Wordpress
 - Tema Monstroid2
+
+https://omeuchapa.com/
 
 ## APIs
 
@@ -48,3 +52,10 @@ ps: usar chrome://inspect -> "open dedicated DevTools for node" para que possa m
 
 O app está configurado no heroku para a cada push no `master` fazer deploy novamente do app para o bot @meu_chapa_bot no
 telegram
+
+# Links
+
+https://omeuchapa.com/
+https://www.facebook.com/Meu-Chapa-110865480666209
+https://www.instagram.com/omeuchapa/
+https://t.me/meu_chapa_bot
