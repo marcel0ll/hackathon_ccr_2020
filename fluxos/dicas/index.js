@@ -9,7 +9,7 @@ const key = "O chapa responde!";
 
 const submenu = {
   dicas: "Dicas",
-  eventos: "Eventos!",
+  eventos: "Eventos e campanhas",
   fale: "Fale com alguém!",
   site: "Conheça nosso site!",
 };

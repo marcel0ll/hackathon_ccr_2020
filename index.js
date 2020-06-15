@@ -211,7 +211,7 @@ bot.onText(/^Quero sim!$/i, initFlow);
 bot.onText(/^opa$/i, initFlow);
 bot.onText(new RegExp(`${yes}\|${no}`, "i"), ynFlow);
 
-bot.onText(new RegExp(`Cancelar!`), async (msg, match) => {
+bot.onText(new RegExp(`^Cancelar`, "i"), async (msg, match) => {
   await sleep(1);
 
   bot.sendMessage(msg.chat.id, `Opa! Qualquer coisa só mandar um olá!`, {

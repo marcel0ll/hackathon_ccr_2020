@@ -1,7 +1,7 @@
 const { sleep, requestLocation, getRandom } = require("../../util");
 
 const { users, places, votes } = require("../../storage");
-const key = "Combustivel";
+const key = "Combustível";
 
 const init = (bot) => {
   bot.onText(new RegExp(`^${key}$`, "i"), main(bot));
@@ -103,7 +103,7 @@ const choseOption = (bot) => async (msg, match) => {
   bot.sendMessage(msg.chat.id, `Se precisar de mim, é só mandar um oi!`, {
     reply_markup: {
       one_time_keyboard: true,
-      keyboard: [["oi"]],
+      keyboard: [["Oi"]],
     },
   });
 

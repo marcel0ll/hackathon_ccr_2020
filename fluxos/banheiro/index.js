@@ -106,7 +106,7 @@ const choseOption = (bot) => async (msg, match) => {
   bot.sendMessage(msg.chat.id, `Se precisar de mim, é só mandar um oi!`, {
     reply_markup: {
       one_time_keyboard: true,
-      keyboard: [["oi"]],
+      keyboard: [["Oi"]],
     },
   });
 

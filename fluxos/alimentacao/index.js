@@ -1,7 +1,7 @@
 const { sleep, requestLocation, getRandom } = require("../../util");
 
 const { users, places, votes } = require("../../storage");
-const key = "Alimentacao";
+const key = "Alimentação";
 
 const init = (bot) => {
   bot.onText(new RegExp(`^${key}$`, "i"), main(bot));
