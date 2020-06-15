@@ -18,10 +18,10 @@ alguns sentimentos, frustrações, alterações no sono e no humor.  Ele irá t
 cuidar disso! 😉`,
   ],
   [
-    `ALONGUE-SE`,
+    `ALONGUE-SE SE 🙆`,
     `Esse exercício ajuda a desenvolver a flexibilidade, eliminar encurtamentos musculares,
 auxilia na recuperação da fadiga muscular, melhora a consciência corporal, previne
-dores, diminuir a tensão e o estresse.`,
+dores, diminuir a tensão e o estresse. . 💆 🧘`,
   ],
   [
     `BEBA MUITA ÁGUA 💦`,
@@ -30,36 +30,36 @@ hidratado durante todo o dia pode ajudá-lo a ficar energizado e suprimir sentim
 de fome. A água ajuda a drenar nossos sistemas de resíduos e toxinas.`,
   ],
   [
-    `EVITE O EXCESSO DE ESTRESSE`,
+    `EVITE O EXCESSO DE ESTRESSE  😤😑😖`,
     `Excessopode causar alterações hormonais e prejudicar gravemente o`,
-    `funcionamento do seu organismo. O estresse contribui para a depressão, que é um
-enorme problema de saúde hoje. Cuide-se!`,
+    `funcionamento do seu organismo 😱. O estresse contribui para a depressão, que é um
+enorme problema de saúde hoje. Cuide-se! 😉`,
   ],
   [
-    `ABANDONE VÍCIOS QUE PREJUDICAM SUA SAÚDE`,
+    `ABANDONE VÍCIOS QUE PREJUDICAM SUA SAÚDE  💊🍺🚬`,
     `Vícios em drogas, medicamentos, bebidas alcoólicas e cigarros afetam diretamente sua
 saúde e bem-estar! Portanto, abandoná-los é a única saída. Se precisar, procure
-tratamento especializado.`,
+tratamento especializado. 👨`,
   ],
   [
-    `PRATIQUE EXERCÍCIO FÍSICO`,
+    `PRATIQUE EXERCÍCIO FÍSICO🏃⚽🏋`,
     `Quando você se exercita faz com que seu corpo, cérebro e hormônios funcionem
 melhor.
 Praticar exercícios pode ajudar a reduzir a depressão e o risco de várias doenças
 crônicas, como obesidade, diabetes tipo 2, doenças cardíacas, prevenir o Alzheimer e
-muitas outras.`,
+muitas outras. 🧘`,
   ],
   [
-    `CONVIVA COM AS PESSOAS QUE AMA`,
+    `CONVIVA COM AS PESSOAS QUE AMA 🥰`,
     `É muito importante trabalhar, mas aproveitar de um tempo ao lado das pessoas que
 ama, faz com que a vida tenha sentido e cor. E lembre-se: o que vale é a qualidade
 desse tempo, e não necessariamente a quantidade de horas que terá disponível.`,
   ],
   [
-    `PRIORIZE UM BOM SONO`,
-    `Você precisa dormir quantas horas para realmente se sentir descansado? Cada um terá
+    `PRIORIZE UM BOM SONO 😴`,
+    `Você precisa dormir quantas horas para realmente se sentir descansado? 🤔 Cada um terá
 uma resposta para essa pergunta. O importante é conseguir dormir e descansar. Isso é
-fundamental para o relaxamento do corpo e da mente.`,
+fundamental para o relaxamento do corpo e da mente. 💆`,
   ],
 ];
 
